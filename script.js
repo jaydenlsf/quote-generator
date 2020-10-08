@@ -20,8 +20,7 @@ function removeLoadingSpinner() {
 // Get quote from API
 async function getQuote() {
     showLoadingSpinner();
-    // Use a proxy url to make an API call to avoid 429 errors
-    const proxyUrl = 'https://ancient-river-64905.herokuapp.com/';
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
     try {
         const response = await fetch(proxyUrl + apiUrl);
@@ -44,7 +43,7 @@ async function getQuote() {
         removeLoadingSpinner();
     } catch (error) {
         console.log(error)
-        getQuote(); // if it encounters an issue at getting a quote, request for another one
+        getQuote(); // Run getQuote() function right away when an issue is encountered
     }
 
 }
